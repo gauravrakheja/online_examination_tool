@@ -23,8 +23,12 @@ ActiveRecord::Schema.define(version: 20180217184900) do
     t.string "subject"
   end
 
-# Could not dump table "questions" because of following StandardError
-#   Unknown type 'sting' for column 'type'
+  create_table "questions", force: :cascade do |t|
+    t.integer "exam_id"
+    t.string "text"
+    t.integer "marks"
+    t.string "answer_type"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
