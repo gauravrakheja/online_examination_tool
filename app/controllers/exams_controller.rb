@@ -8,13 +8,13 @@ class ExamsController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		if can? :create, Exam
 			@exam = Exam.new(exam_params)
 			if @exam.save
-
+				flash[:notice] = "The exam has been created"
 			else
-
+				flash[:alert] = @exam.errors.full_messages.to_sentence
+				render :new
 			end
 		end
 	end
