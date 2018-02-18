@@ -5,21 +5,21 @@ class ExamsController < ApplicationController
 	end
 
 	def create
-		if can? :create, Exam
-			@exam = Exam.new(exam_params)
-			if @exam.save
-				flash[:notice] = "The exam has been created"
-			else
-				flash[:alert] = @exam.errors.full_messages.to_sentence
-				render :new
-			end
+		@exam = Exam.new(exam_params)
+		if @exam.save
+			flash[:notice] = "The exam has been created"
+			redirect_to exams_path
+		else
+			flash[:alert] = @exam.errors.full_messages.to_sentence
+			render :new
 		end
+		authorize! :create, Exam
 	end
 
 	def index
-		if can? :read, Exam
-			@exams = Exam.all
-		end
+		@q = Exam.ransack(params[:q])
+		@exams = @q.result
+		authorize! :read, Exam
 	end
 
 	private

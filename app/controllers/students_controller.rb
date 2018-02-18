@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
 	def index
-		@students = User.students.all
+		@q = User.students.ransack(params[:q])
+		@students = @q.result(distict: true)
 	end
 end

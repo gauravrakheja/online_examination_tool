@@ -10,7 +10,12 @@ class User < ApplicationRecord
 
   scope :teachers, -> { where(role: TEACHER_ROLE, confirmed: true) }
   scope :unconfirmed_teachers, -> { where(role: TEACHER_ROLE, confirmed: nil) }
-  scope :students, -> { where(role: STUDENT_ROLE) }
+
+  class << self
+    def students
+      where(role: STUDENT_ROLE)
+    end
+  end
 
   def teacher?
 		role == TEACHER_ROLE && confirmed?

@@ -1,7 +1,3 @@
-.card{
-	margin: 10px;
-}
-
 .options-for-questions{
 	display: none;
 }
@@ -10,9 +6,6 @@
 	margin: 10px;
 }
 
-.student-card{
-	margin: 10px;
-}
 
 body{
 	background-image: url(/bg2.jpg);
@@ -29,6 +22,7 @@ nav{
 }
 
 .card{
+	margin: 5px;
 	opacity: 0.8;
 }
 
@@ -37,5 +31,10 @@ nav{
 	background-color: white;
 	margin: 10px;
 	border-radius: 500px;
+	border: 1px solid black;
+}
+
+.student-searchbar{
+	margin: 10px;
 	border: 1px solid black;
 }
