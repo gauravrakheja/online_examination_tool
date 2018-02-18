@@ -1,0 +1,12 @@
+<div class="white">
+	<h1><%= @attempt.exam_title %></h1>
+	<h2><%= @attempt.exam_subject %></h2>
+	<%= form_for @attempt do |f| %>
+		<%= f.hidden_field :exam_id, value: @exam.id %>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+		<%= f.fields_for :questions do |ff| %>
+			<%= render 'attempts/answer_form', f: ff %>
+		<% end %>
+		<%= f.submit "Submit", class: 'btn btn-primary' %>
+	<% end %>
+</div>

@@ -1,0 +1,26 @@
+<div class="row">  
+  <% @students.each do |student| %>
+    <div class="col-lg-3 col-sm-6 student-card">  
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= student.email %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% student.attempts.each do |attempt| %>
+            <li class="list-group-item">
+              Date: <%= attempt.created_at.strftime("%d-%m-%Y") %><br/>
+              Exam: <%= attempt.exam_title %><br/>
+              Subject: <%= attempt.exam_subject %><br/>
+              Status: <%= attempt.status %><br/>
+              Total: <%= attempt.total_marks %><br/>
+              <% if attempt.evaluated? %>
+                Obtained: <%= attempt.marks_obtained %><br/>
+              <% end %>
+              <%= link_to 'view copy', attempt_path(attempt), class: 'btn btn-danger' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

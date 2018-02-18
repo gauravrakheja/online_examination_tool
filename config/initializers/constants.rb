@@ -1,6 +1,7 @@
 #user
 TEACHER_ROLE = "teacher"
 STUDENT_ROLE = "student"
+ADMIN_ROLE = "admin"
 
 AVAILABLE_ROLES = [TEACHER_ROLE, STUDENT_ROLE]
 

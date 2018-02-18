@@ -1,0 +1,53 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4" align="center"><%= @attempt.exam.title %></h1>
+    <p class="lead" align="center"><%= @attempt.answers.checked.count %> Answers Evaluated Out Of <%= @attempt.questions.count %></p>
+  </div>
+</div>
+<% @attempt.questions.each do |question| %>
+	<div class="card">
+	  <div class="card-header">
+	    <%= question.text %>
+	    <span id=<%= "marks_#{question.answer_for_attempt(@attempt).id}" %> >
+			<%= render 'attempts/marks-obtained', answer: question.answer_for_attempt(@attempt) %>
+	    </span>
+	    <span class="badge badge-warning badge-pill">
+	    	Total Marks: <%= question.try(:marks) %>
+	    </span>
+	  </div>
+	  <div class="card-body">
+	  	<% if question.objective? %>
+	  		<div class="row">
+				<div class="col-lg-6 col-sm-12 col-xs-12">
+					1. <%= question.option1 %>
+				</div>
+				<div class="col-lg-6 col-sm-12 col-xs-12">
+					2. <%= question.option2 %>
+				</div>
+				<div class="col-lg-6 col-sm-12 col-xs-12">
+					3. <%= question.option3 %>
+				</div>
+				<div class="col-lg-6 col-sm-12 col-xs-12">
+					4. <%= question.option4 %>
+				</div>
+	  		</div>
+	  	<% end %>
+	    <p class="card-text"><%= question.answer_for_attempt(@attempt).try(:submitted_answer) %></p>
+	    <% if can? :edit, Answer %>
+		    <% if answer = question.answer_for_attempt(@attempt) %>
+		    	<%= form_for answer, remote: true do |f| %>
+		    		<small>*students don't see this</small>
+		    		<div class="row">
+					<div class="form-group col-lg-6 col-sm-12">
+						<%= f.select :marks, (0..question.marks), {}, class: "form-control" %>
+					</div>
+					<div class="form-group col-lg-6 col-sm-12">
+						<%= f.submit "Evaluate Answer", class: "btn btn-default" %>
+					</div>
+		    		</div>
+		    	<% end %>
+		    <% end %>
+	    <% end %>
+	  </div>
+	</div>
+<% end %>

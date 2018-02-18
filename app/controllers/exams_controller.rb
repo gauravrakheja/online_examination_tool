@@ -1,10 +1,7 @@
 class ExamsController < ApplicationController
 	def new
-		if can? :create, Exam
-			@exam = Exam.new
-		else
-			redirect_to root_path
-		end
+		@exam = Exam.new
+		authorize! :create, Exam
 	end
 
 	def create

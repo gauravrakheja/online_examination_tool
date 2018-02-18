@@ -2,7 +2,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.teacher?
+    user ||= User.new #guest uset
+    if user.admin?
+        can :manage, Exam
+        can :manage, Answer
+        can :manage, Question
+        can :manage, Attempt
+        can :manage, User
+    elsif user.teacher?
         can :manage, Exam
         can :manage, Answer
         can :manage, Question

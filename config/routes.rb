@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   get 'exams/:exam_id/attemps/new', to: 'attempts#new', as: 'new_attempt'
   post 'exams/:exam_id/attemps/new', to: 'attempts#create', as: 'attempts'
   resources :answers, only: [:update]
-  get 'exams/:exam_id/attempts', to: 'attempts#index', as: 'all_attempts'
+  get 'exams/:exam_id/attempts', to: 'attempts#confirm', as: 'all_attempts'
   resources :attempts, only: [:show]
   resources :exams, only: [:new, :create, :index]
+  resources :students, only: [:index]
+  post 'teachers/:user_id/confirm', to: 'teachers#update', as: 'confirm_teacher'
+  resources :teachers, only: [:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,22 @@
+<div class="form-group">
+	<%= f.object.text %>
+	<% if f.object.objective? %>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<%= "1. " +  f.object.option1 %>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<%= "2. " + f.object.option2 %>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<%= "3." + f.object.option3 %>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<%= "4. " + f.object.option4 %>
+			</div>
+		</div>
+	<% end %>
+	<%= f.fields_for f.object.answers.build do |ff| %>
+		<%= render 'attempts/answer', f: ff %>
+	<% end %>
+</div>

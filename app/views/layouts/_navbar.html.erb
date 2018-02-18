@@ -5,6 +5,9 @@
         <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
       </li>
     <% end %>
+    <% if can? :manage, User %>
+      <%= link_to 'Unconfirmed Teachers', teachers_path, class: 'nav-link' %>
+    <% end %>
     <% if can? :create, Exam %>
       <li class="nav-item">
         <%= link_to 'Create New Exam', new_exam_path, class: "nav-link" %>
@@ -15,5 +18,8 @@
         <%= link_to 'All Exams', exams_path, class: "nav-link" %>
       </li>
     <% end %>
+    <li class="nav-item">
+      <%= link_to "Registered Students", students_path, class: "nav-link" %>
+    </li>
   </ul>
 </nav>

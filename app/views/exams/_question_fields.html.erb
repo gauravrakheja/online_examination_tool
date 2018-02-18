@@ -1,0 +1,39 @@
+<div class="nested-fields" id="questions">
+	<div class="form-group">
+		<%= f.label :text %>
+		<%= f.text_area :text, class: "form-control" %>
+	</div>
+	<div class="form-group">
+		<%= f.label :marks %>
+		<%= f.number_field :marks, class: "form-control" %>
+	</div>
+	<div class="form-group">
+		<% AVAILABLE_QUESTION_TYPES.each do |answer_type| %>
+			<%= f.radio_button :answer_type, answer_type, class: answer_type %>
+			<%= f.label "answer_type_#{answer_type}".to_sym, answer_type %>
+		<% end %>
+	</div>
+	<div class="options-for-questions">
+		<div class="row">
+		<div class="form-group col-lg-6 col-md-6 col-s-12 col-xs-12 ">
+			<%= f.label :option1, "First Option" %>
+			<%= f.text_field :option1, class: "form-control" %> 
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-s-12 col-xs-12 ">
+			<%= f.label :option2, "Second Option" %>
+			<%= f.text_field :option2, class: "form-control" %> 
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-s-12 col-xs-12 ">
+			<%= f.label :option3, "Third Option" %>
+			<%= f.text_field :option3, class: "form-control" %> 
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-s-12 col-xs-12 ">
+			<%= f.label :option4, "Fourth Option" %>
+			<%= f.text_field :option4, class: "form-control" %> 
+		</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= link_to_remove_association "remove question", f, { class: 'btn btn-danger remove-question-button' }%>
+	</div>
+</div>

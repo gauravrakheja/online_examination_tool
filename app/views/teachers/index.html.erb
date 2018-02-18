@@ -1,0 +1,19 @@
+<div class="row">
+	<% @teachers.each do |teacher| %>
+		<div class="col-sm-3">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title"><%= teacher.name %></h5>
+			    <p class="card-text">email: <%= teacher.email %></p>
+			    <p class="card-text">created at: <%= teacher.created_at.strftime("%d-%m-%Y") %></p>
+				<%= form_tag confirm_teacher_path(teacher) do |f| %>
+					<%= submit_tag "Confirm Teacher", class: 'btn btn-primary' %>
+				<% end %>
+			  </div>
+			</div>
+		</div>
+	<% end %>
+</div>
+	
+	
+	

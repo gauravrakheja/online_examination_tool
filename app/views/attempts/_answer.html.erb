@@ -1,0 +1,5 @@
+<% if f.object.subjective? %>
+	<%= f.text_area :text, class: 'form-control' %>
+<% elsif f.object.objective? %>
+	<%= f.select :submitted_option, (1..4), {}, {class: 'form-control'} %>
+<% end %>
