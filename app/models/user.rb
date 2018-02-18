@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :attempts
+
+  scope :teachers, -> { where(role: TEACHER_ROLE) }
+  scope :students, -> { where(role: STUDENT_ROLE) }
+
   def teacher?
 		role == TEACHER_ROLE
   end

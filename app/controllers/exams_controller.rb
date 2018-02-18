@@ -19,9 +19,15 @@ class ExamsController < ApplicationController
 		end
 	end
 
+	def index
+		if can? :read, Exam
+			@exams = Exam.all
+		end
+	end
+
 	private
 
 	def exam_params
-		params.require(:exam).permit(:subject, :title, questions_attributes: [:text, :marks, :answer_type, :_destroy, :id])
+		params.require(:exam).permit(:subject, :title, questions_attributes: [:text, :marks, :answer_type, :option1, :option2, :option3, :option4, :_destroy, :id])
 	end
 end

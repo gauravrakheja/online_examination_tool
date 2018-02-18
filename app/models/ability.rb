@@ -6,10 +6,13 @@ class Ability
         can :manage, Exam
         can :manage, Answer
         can :manage, Question
+        can :manage , Attempt
     elsif user.student?
         can :read, Question
-        can :update, Answer
-        can :update, Exam
+        can :create, Answer
+        can :read, Answer
+        can :create, Attempt
+        can :read, Attempt
         can :read, Exam
     end
     # Define abilities for the passed in user here. For example:

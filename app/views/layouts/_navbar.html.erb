@@ -1,16 +1,19 @@
 <nav>
   <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
-    </li>
+    <% if current_user %>
+      <li class="nav-item">
+        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+    <% end %>
+    <% if can? :create, Exam %>
+      <li class="nav-item">
+        <%= link_to 'Create New Exam', new_exam_path, class: "nav-link" %>
+      </li>
+    <% end %>
+    <% if can? :read, Exam %>
+      <li class="nav-item">
+        <%= link_to 'All Exams', exams_path, class: "nav-link" %>
+      </li>
+    <% end %>
   </ul>
 </nav>
