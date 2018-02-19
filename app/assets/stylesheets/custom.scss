@@ -8,16 +8,18 @@
 
 
 body{
-	background-image: url(/bg2.jpg);
+	background-image: url(/bg5.jpg);
 }
 
 nav{
 	background-color: white;
+	opacity: 0.9;
 }
 
 .white{
+	margin-top: 10px;
 	background-color: white;
-	opacity: 0.7;
+	opacity: 0.8;
 	padding: 20px;
 }
 
@@ -27,14 +29,16 @@ nav{
 }
 
 .jumbotron{
-	opacity: 0.7;
+	opacity: 0.8;
 	background-color: white;
-	margin: 10px;
-	border-radius: 500px;
-	border: 1px solid black;
+	margin-top: 10px;
 }
 
 .student-searchbar{
 	margin: 10px;
 	border: 1px solid black;
+}
+
+.correct-option-field{
+	display: none;
 }

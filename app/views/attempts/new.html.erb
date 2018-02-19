@@ -1,6 +1,11 @@
 <div class="white">
+	<p id="demo"></p>
 	<h1><%= @attempt.exam_title %></h1>
 	<h2><%= @attempt.exam_subject %></h2>
+	<% if @attempt.duration %>
+		<%= hidden_field_tag :duration, @attempt.duration %>
+		<%= hidden_field_tag :time, @attempt.end_time %>
+	<% end %>
 	<%= form_for @attempt do |f| %>
 		<%= f.hidden_field :exam_id, value: @exam.id %>
 		<%= f.hidden_field :user_id, value: current_user.id %>

@@ -1,10 +1,11 @@
 class Question < ApplicationRecord
 	belongs_to :exam
 	has_many :answers
+	has_many :attempts, through: :exam
 	validates :text, presence: true
 	validates :marks, presence: true, numericality: true
 	validates :answer_type, presence: true
-	has_many :attempts, through: :exam
+	validates :correct_option, presence: true, numericality: true, if: :objective?
 
 	accepts_nested_attributes_for :answers
 

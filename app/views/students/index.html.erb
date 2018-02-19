@@ -2,10 +2,10 @@
   <%= search_form_for @q, url: students_path do |f| %>
   <div class="row align-items-center">
     <div class="col-4">
-      <%= f.label :name_or_email_cont %>
+      <%= f.label :name_or_email_or_roll_number_cont %>
     </div>
     <div class="col-4">
-      <%= f.search_field :name_or_email_cont, class: "form-control" %>
+      <%= f.search_field :name_or_email_or_roll_number_cont, class: "form-control" %>
     </div>
     <div class="col-4">
       <%= f.submit "Search", class: 'btn btn-primary' %>
@@ -15,12 +15,12 @@
 </div>
 <div class="card-columns">  
   <% @students.each do |student| %>
-      <div class="card" style="width: 18rem;">
+      <div class="card" style='width: 18rem;'>
         <div class="card-body">
           <h5 class="card-title"><%= student.email %></h5>
         </div>
         <ul class="list-group list-group-flush">
-          <% student.attempts.each do |attempt| %>
+          <% student.attempts.order(created_at: :desc).each do |attempt| %>
             <li class="list-group-item">
               Date: <%= attempt.created_at.strftime("%d-%m-%Y") %><br/>
               Exam: <%= attempt.exam_title %><br/>

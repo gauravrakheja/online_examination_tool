@@ -5,6 +5,7 @@ class Attempt < ApplicationRecord
 	has_many :answers
 
 	delegate :title, :subject, to: :exam, prefix: true
+	delegate :duration, to: :exam
 
 	accepts_nested_attributes_for :answers, :questions, allow_destroy: true, reject_if: :all_blank
 
@@ -31,5 +32,9 @@ class Attempt < ApplicationRecord
 
 	def marks_obtained
 		answers.map(&:marks).sum
+	end
+
+	def end_time
+		Time.now + duration.minutes
 	end
 end

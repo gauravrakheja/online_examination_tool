@@ -17,8 +17,8 @@
 <% @exams.each do |exam| %>
 	<div class="card" style="width: 18rem;">
 	  <div class="card-body">
-	    <h5 class="card-title"><%= exam.title %></h5>
-	    <h6 class="card-subtitle mb-2 text-muted"><%= exam.subject %></h6>
+	    <h5 class="card-title">Title: <%= exam.title %></h5>
+	    <h6 class="card-subtitle mb-2 text-muted">Subject: <%= exam.subject %><br/>Duration: <%= exam.duration %> minutes</h6>
 	    <%= link_to 'Give The Exam', new_attempt_path(exam), class: 'card-link' %><br/>
 	    <% if can? :edit, Attempt %>
 			<%= link_to 'View All The Attempts', all_attempts_path(exam) %>

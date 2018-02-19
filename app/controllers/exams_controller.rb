@@ -25,6 +25,6 @@ class ExamsController < ApplicationController
 	private
 
 	def exam_params
-		params.require(:exam).permit(:subject, :title, questions_attributes: [:text, :marks, :answer_type, :option1, :option2, :option3, :option4, :_destroy, :id])
+		params.require(:exam).permit(:subject, :title, :duration, questions_attributes: [:text, :marks, :answer_type, :option1, :option2, :option3, :option4, :correct_option, :_destroy, :id])
 	end
 end
