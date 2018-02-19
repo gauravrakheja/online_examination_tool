@@ -6,7 +6,7 @@ class TeachersController < ApplicationController
 
 	def update
 		@user = User.find(params[:user_id])
-		if @user.update_attributes(confirmed: true)
+		if @user.confirm
 			flash[:notice] = "#{@user.name}'s account has been confirmed"
 			redirect_back(fallback_location: root_path)
 		else

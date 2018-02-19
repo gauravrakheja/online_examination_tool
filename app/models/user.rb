@@ -25,6 +25,10 @@ class User < ApplicationRecord
     confirmed == true
   end
 
+  def confirm
+    update_attributes(confirmed: true)
+  end
+
   def admin?
     role == ADMIN_ROLE
   end

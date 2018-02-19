@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'exams/:exam_id/attemps/new', to: 'attempts#new', as: 'new_attempt'
   post 'exams/:exam_id/attemps/new', to: 'attempts#create', as: 'attempts'
   resources :answers, only: [:update]
-  get 'exams/:exam_id/attempts', to: 'attempts#confirm', as: 'all_attempts'
+  get 'exams/:exam_id/attempts', to: 'attempts#index', as: 'all_attempts'
   resources :attempts, only: [:show]
   resources :exams, only: [:new, :create, :index]
   resources :students, only: [:index]
