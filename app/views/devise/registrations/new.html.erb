@@ -17,15 +17,7 @@
         <div class="form-group">
           <%= f.label :role %>
           <small>*The teacher role account will be activated after confirmation</small>
-          <%= f.select :role, AVAILABLE_ROLES, {}, {class: 'form-control'} %>
-        </div>
-        <div class="form-group">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>
+          <%= f.select :role, options_for_select(AVAILABLE_ROLES, STUDENT_ROLE), {}, {class: 'form-control'} %>
         </div>
         <div class="form-group">
           <%= f.label :roll_number %>
@@ -41,6 +33,14 @@
           <%= f.label :semester %>
           <small>*only for students</small>
           <%= f.text_field :semester, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
         </div>
         <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary' %>
       <% end %>
