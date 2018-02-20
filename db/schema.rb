@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219180529) do
+ActiveRecord::Schema.define(version: 20180220190010) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "question_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180219180529) do
     t.string "roll_number"
     t.string "name"
     t.boolean "confirmed"
+    t.integer "semester"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

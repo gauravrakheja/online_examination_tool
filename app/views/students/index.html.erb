@@ -17,7 +17,7 @@
   <% @students.each do |student| %>
       <div class="card" style='width: 18rem;'>
         <div class="card-body">
-          <h5 class="card-title"><%= student.email %></h5>
+          <h5 class="card-title"><%= student.name.capitalize %><br/><small><%= student.semester.ordinalize %> Semester <%= student.course %><br/>roll_number: <%= student.roll_number %></small></h5>
         </div>
         <ul class="list-group list-group-flush">
           <% student.attempts.order(created_at: :desc).each do |attempt| %>

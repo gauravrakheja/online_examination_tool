@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :course, :roll_number, presence: true, if: :student?
+  validates :course, :roll_number, :semester, presence: true, if: :student?
+  validates :semester, numericality: true
   validates :email, :name, presence: true
   validate :roll_number_regex, if: :student?
 
