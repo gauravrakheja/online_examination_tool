@@ -1,21 +1,33 @@
-<ul class="list-group">
-	<div class="row">
-		<% @attempts.each do |attempt| %>
-			<div class="col-lg-6 cold-sm-12 col-xs-12">
-				<li class="list-group-item d-flex justify-content-between align-items-center attempt-listing-item">
-					<%= link_to attempt.exam_title, attempt_path(attempt) %>
-					<span class="badge badge-info badge-pill">
-						<%= attempt.user.email %> 
-					</span>
-					<span class="badge badge-dark badge-pill">
-						<%= attempt.created_at.strftime('%d-%m-%Y') %> 
-					</span>
-					<span class="badge badge-warning badge-pill">
-						<%= attempt.status %>
-					</span>
-					
-				</li>
-			</div>
+<div align="center">
+	<span class="badge badge-light badge-pill">
+	  <%= link_to 'Sort By:', '#' %>
+	</span>
+	<span class="badge badge-light badge-pill">
+		<%= sort_link(@q, :user_name) do %>
+		  Student's name
 		<% end %>
-	</div>
-</ul>
+	</span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :exam_title) do %>
+      Exam Title
+    <% end %>
+  </span>
+</div>
+<table class="table table-stripped white">
+	<tr>
+		<th>Exam Title</th>
+		<th>Student's Name</th>
+		<th>Student's Email</th>
+		<th>Attempted On</th>
+		<th>Status</th>
+	</tr>
+	<% @attempts.each do |attempt| %>
+		<tr>
+			<td><%= link_to attempt.exam_title, attempt_path(attempt) %></td>
+			<td><%= attempt.user.name %></td>
+			<td><%= attempt.user.email %></td>
+			<td><%= attempt.created_at.strftime("%d-%m-%Y") %></td>
+			<td><%= attempt.status %></td>
+		</tr>
+	<% end %>
+</table>

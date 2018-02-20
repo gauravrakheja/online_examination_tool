@@ -14,9 +14,11 @@
 	    <span class="badge badge-warning badge-pill">
 	    	Total Marks: <%= question.try(:marks) %>
 	    </span>
-		<span class="badge badge-danger badge-pill">
-			Evaluator: <%= question.answer_for_attempt(@attempt).try(:evaluated_by) %>
-		</span>
+	    <% if question.answer_for_attempt(@attempt).try(:evaluated_by) %>
+			<span class="badge badge-danger badge-pill">
+				Evaluator: <%= question.answer_for_attempt(@attempt).try(:evaluated_by) %>
+			</span>
+		<% end %>
 	  </div>
 	  <div class="card-body">
 	  	<% if question.objective? %>

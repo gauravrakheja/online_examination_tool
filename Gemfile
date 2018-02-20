@@ -22,6 +22,7 @@ gem 'pry'
 gem 'jquery-rails'
 gem "cocoon"
 gem 'ransack'
+gem 'aasm'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

@@ -13,6 +13,20 @@
   </div>
   <% end %>
 </div>
+<div align="center">
+  <span class="badge badge-light badge-pill">
+    <%= link_to 'Sort By:', '#' %>
+  </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :title) %>
+  </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :subject) %>
+  </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :duration) %>
+  </span>
+</div>
 <div class="card-columns">
 <% @exams.each do |exam| %>
 	<div class="card" style="width: 18rem;">

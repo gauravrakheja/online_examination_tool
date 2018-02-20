@@ -8,7 +8,7 @@
 
 
 body{
-	background-image: url(/bg8.jpg);
+	background-image: url(/bg1.jpg);
 }
 
 nav{
@@ -19,8 +19,10 @@ nav{
 .white{
 	margin-top: 10px;
 	background-color: white;
+	font-weigth: bold;
 	opacity: 0.8;
 	padding: 20px;
+	font-weight: bold;
 }
 
 .card{
@@ -36,7 +38,6 @@ nav{
 
 .student-searchbar{
 	margin: 10px;
-	border: 1px solid black;
 }
 
 .correct-option-field{

@@ -23,7 +23,8 @@ class AttemptsController < ApplicationController
 	end
 
 	def index
-		@attempts = @exam.attempts.order(created_at: :desc)
+		@q = @exam.attempts.ransack(params[:q])
+		@attempts = @q.result(distinct: true).order(created_at: :desc)
 		authorize! :read, Attempt
 	end
 

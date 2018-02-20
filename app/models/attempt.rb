@@ -1,4 +1,6 @@
 class Attempt < ApplicationRecord
+	include AASM
+
 	belongs_to :user
 	belongs_to :exam
 	has_many :questions, through: :exam
@@ -9,17 +11,19 @@ class Attempt < ApplicationRecord
 
 	accepts_nested_attributes_for :answers, :questions, allow_destroy: true, reject_if: :all_blank
 
+	alias_attribute :status, :aasm_state
 
-	def status
-		if answers.empty?
-			return
-		end
-		unchecked_answers = answers.reject { |answer| answer.marks.present? }
-		if unchecked_answers.empty?
-			"Evaluated"
-		else
-			"Pending"
-		end
+	aasm do
+	  state :pending, :initial => true
+	  state :evaluated
+
+	  event :correct do
+	    transitions :from => :pending, :to => :evaluated
+	  end
+    end
+
+	def unchecked_answers
+		answers.reject { |answer| answer.marks.present? }
 	end
 
 	def evaluated?
@@ -36,5 +40,13 @@ class Attempt < ApplicationRecord
 
 	def end_time
 		Time.now + duration.minutes
+	end
+
+	def check_if_evaluated
+		if answers.empty? or unchecked_answers.present? or evaluated?
+			return
+		else
+			correct!
+		end
 	end
 end
