@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :course, :roll_number, presence: true, if: :student?
+  validates :email, :name, presence: true
+  validate :roll_number_regex, if: :student?
 
   has_many :attempts
 
@@ -39,5 +41,14 @@ class User < ApplicationRecord
 
   def teacher?
     role == ADMIN_ROLE
+  end
+
+  private
+
+  def roll_number_regex
+    flag = roll_number =~ /[0-9][0-9][a-z][a-z][a-z][a-zA-Z0-9][0-9][0-9][0-9][0-9]/
+    if flag.nil?
+      errors.add(:roll_number, "must be of valid format")
+    end
   end
 end

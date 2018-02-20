@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4" align="center"><%= @attempt.exam.title %></h1>
-    <p class="lead" align="center"><%= @attempt.answers.checked.count %> Answers Evaluated Out Of <%= @attempt.questions.count %></p>
+    <p class="lead" align="center"><%= @attempt.user.name %><br/><%= @attempt.status %></p>
   </div>
 </div>
 <% @attempt.questions.each do |question| %>
