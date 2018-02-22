@@ -40,10 +40,6 @@ class User < ApplicationRecord
   	role == STUDENT_ROLE
   end
 
-  def teacher?
-    role == ADMIN_ROLE
-  end
-
   private
 
   def roll_number_regex

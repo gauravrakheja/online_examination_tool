@@ -10,10 +10,12 @@ FactoryBot.define do
 
 		factory :teacher, class: User do
 			role "teacher"
+			confirmed true
 		end
 
-		factory :confirmed_teacher, class: User do
+		factory :unconfirmed_teacher, class: User do
 			role "teacher"
+			confirmed nil
 		end
 
 		factory :student, class: User do
