@@ -8,8 +8,13 @@ class Answer < ApplicationRecord
 	after_save :correct_answer, if: :objective?
 	after_save :update_attempt
 
-	delegate :objective?, to: :question
-	delegate :subjective?, to: :question
+	delegate :objective?, :subjective?, to: :question, allow_nil: true
+
+	class << self
+		def checked
+			where.not(marks: nil)
+		end
+	end
 
 	def submitted_answer
 		objective? ? submitted_option : text
@@ -19,12 +24,8 @@ class Answer < ApplicationRecord
 		marks.present?
 	end
 
-	def self.checked
-		where.not(marks: nil)
-	end
-
 	def evaluated_by
-		if evaluator
+		if evaluator && !marks.nil?
 			evaluator.name
 		elsif !marks.nil?
 			"auto"

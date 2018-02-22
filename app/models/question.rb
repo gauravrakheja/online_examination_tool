@@ -6,6 +6,7 @@ class Question < ApplicationRecord
 	validates :marks, presence: true, numericality: true
 	validates :answer_type, presence: true
 	validates :correct_option, presence: true, numericality: true, if: :objective?
+	validates :option1, :option2, :option3, :option4, presence: true, if: :objective? 
 
 	accepts_nested_attributes_for :answers
 

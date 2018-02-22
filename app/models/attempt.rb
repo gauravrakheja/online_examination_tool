@@ -43,9 +43,9 @@ class Attempt < ApplicationRecord
 	end
 
 	def check_if_evaluated
-		if answers.empty? or unchecked_answers.present? or evaluated?
+		if answers.empty? || evaluated?
 			return
-		else
+		elsif unchecked_answers.empty? and may_correct?
 			correct!
 		end
 	end

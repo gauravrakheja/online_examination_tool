@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :course, :roll_number, :semester, presence: true, if: :student?
-  validates :semester, numericality: true
+  validates :semester, numericality: true, if: :student?
   validates :email, :name, presence: true
   validate :roll_number_regex, if: :student?
 
