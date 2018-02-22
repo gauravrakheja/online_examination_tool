@@ -10,6 +10,8 @@ describe Question, type: :model do
 	it { should validate_presence_of(:answer_type) }
 	it { should validate_numericality_of(:marks) }
 
+	it { should accept_nested_attributes_for(:answers) }
+
 	describe '#objective' do
 		let(:question) { create(:objective_question) }
 		let(:question1) { create(:subjective_question) }
