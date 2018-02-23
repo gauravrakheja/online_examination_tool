@@ -2,7 +2,7 @@
 	<span class="badge badge-warning badge-pill">
 		Total Marks: <%= answer.question_marks %>
 	</span>
-	<% if answer.marks %>
+	<% if answer.marks.present? %>
 		<span class="badge badge-primary badge-pill">
 			Marks Obtained: <%= answer.marks %>
 		</span>
