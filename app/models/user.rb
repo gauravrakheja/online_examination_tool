@@ -14,6 +14,9 @@ class User < ApplicationRecord
   scope :teachers, -> { where(role: TEACHER_ROLE, confirmed: true) }
   scope :unconfirmed_teachers, -> { where(role: TEACHER_ROLE, confirmed: nil) }
 
+  delegate :capitalize, to: :name, prefix: true, allow_nil: true
+  delegate :ordinalize, to: :semester, prefix: true, allow_nil: true
+
   class << self
     def students
       where(role: STUDENT_ROLE)

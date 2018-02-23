@@ -11,14 +11,6 @@
 	    <span id=<%= "marks_#{question.answer_for_attempt(@attempt).try(:id) }" %> >
 			<%= render 'attempts/marks-obtained', answer: question.answer_for_attempt(@attempt) %>
 	    </span>
-	    <span class="badge badge-warning badge-pill">
-	    	Total Marks: <%= question.try(:marks) %>
-	    </span>
-	    <% if question.answer_for_attempt(@attempt).try(:evaluated_by) %>
-			<span class="badge badge-danger badge-pill">
-				Evaluator: <%= question.answer_for_attempt(@attempt).try(:evaluated_by) %>
-			</span>
-		<% end %>
 	  </div>
 	  <div class="card-body">
 	  	<% if question.objective? %>
@@ -52,7 +44,7 @@
 		    		</div>
 		    	<% end %>
 		    <% end %>
-		    Correct Choice: <%= question.correct_option if question.objective? %>
+		    <%= "Correct Choice: #{question.correct_option}" if question.correct_option %>
 	    <% end %>
 	  </div>
 	</div>

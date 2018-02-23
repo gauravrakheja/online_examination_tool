@@ -1,5 +1,11 @@
-<% if answer.try(:marks) %>
+<span class="badge badge-warning badge-pill">
+	Total Marks: <%= answer.question_marks %>
+</span>
+<% if answer.marks %>
 	<span class="badge badge-primary badge-pill">
-		Marks Obtained: <%= answer.try(:marks) %>
+		Marks Obtained: <%= answer.marks %>
+	</span>
+	<span class="badge badge-danger badge-pill">
+		Evaluator: <%= answer.evaluated_by %>
 	</span>
 <% end %>

@@ -5,14 +5,14 @@ class TeachersController < ApplicationController
 	end
 
 	def update
+		authorize! :update, User
 		@user = User.find(params[:user_id])
 		if @user.confirm
-			flash[:notice] = "#{@user.name}'s account has been confirmed"
 			redirect_back(fallback_location: root_path)
+			flash[:notice] = "#{@user.name}'s account has been confirmed"
 		else
 			flash[:alert] = "#{@user.name}'s account could not be verified because #{@user.errors.full_messages}"
 			redirect_back(fallback_location: root_path)
 		end
-		authorize! :update, User
 	end
 end

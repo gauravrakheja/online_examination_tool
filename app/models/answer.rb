@@ -9,6 +9,7 @@ class Answer < ApplicationRecord
 	after_save :update_attempt
 
 	delegate :objective?, :subjective?, to: :question, allow_nil: true
+	delegate :marks, to: :question, prefix: true, allow_nil: true
 
 	class << self
 		def checked

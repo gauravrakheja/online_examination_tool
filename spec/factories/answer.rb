@@ -1,7 +1,6 @@
 FactoryBot.define do
 	factory :answer do
 		attempt
-		association :evaluator, factory: :teacher
 		exam
 		question
 		
