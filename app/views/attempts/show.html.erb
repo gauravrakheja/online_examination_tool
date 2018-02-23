@@ -7,45 +7,58 @@
 <% @attempt.questions.each do |question| %>
 	<div class="card">
 	  <div class="card-header">
-	    <%= question.text %>
+	    <strong><%= question.text %></strong>
 	    <span id=<%= "marks_#{question.answer_for_attempt(@attempt).try(:id) }" %> >
 			<%= render 'attempts/marks-obtained', answer: question.answer_for_attempt(@attempt) %>
 	    </span>
 	  </div>
 	  <div class="card-body">
-	  	<% if question.objective? %>
-	  		<div class="row">
-				<div class="col-lg-6 col-sm-12 col-xs-12">
-					1. <%= question.option1 %>
-				</div>
-				<div class="col-lg-6 col-sm-12 col-xs-12">
-					2. <%= question.option2 %>
-				</div>
-				<div class="col-lg-6 col-sm-12 col-xs-12">
-					3. <%= question.option3 %>
-				</div>
-				<div class="col-lg-6 col-sm-12 col-xs-12">
-					4. <%= question.option4 %>
-				</div>
-	  		</div>
-	  	<% end %>
-	    <p class="card-text"><%= question.answer_for_attempt(@attempt).try(:submitted_answer) %></p>
-	    <% if can? :edit, Answer %>
-		    <% if answer = question.answer_for_attempt(@attempt) %>
-		    	<%= form_for answer, remote: true do |f| %>
-		    		<small>*students don't see this</small>
-		    		<div class="row">
-					<div class="form-group col-lg-6 col-sm-12">
-						<%= f.select :marks, (0..question.marks), {}, class: "form-control" %>
-					</div>
-					<div class="form-group col-lg-6 col-sm-12">
-						<%= f.submit "Evaluate Answer", class: "btn btn-default" %>
-					</div>
-		    		</div>
+	  <div class="row">
+	 	 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		  	<% if question.objective? %>
+		  		<ul class="list-group">
+						<ul class="list-group-item">
+							1. <%= question.option1 %>
+						</ul>
+						<ul class="list-group-item">
+							2. <%= question.option2 %>
+						</ul>
+						<ul class="list-group-item">
+							3. <%= question.option3 %>
+						</ul>
+						<ul class="list-group-item">
+							4. <%= question.option4 %>
+						</ul>
+			  	</ul>
+		    	<p class="card-text"><strong>Submission: </strong><%= "#{objective_answer_for_pair(question, @attempt)}"%>
+	 		    <strong>Correct Choice: </strong><%= "#{question.correct_option}" if question.correct_option %>
+		   		</p>
+		   	<% else %>
+		   		<p class="card-text"><strong>Submission: </strong><%= "#{subjective_answer_for_pair(question, @attempt)}"%>
+	  		<% end %>
+	   	</div>
+	   	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+	 	    <% if can? :edit, Answer %>
+	 		    <% if answer = question.answer_for_attempt(@attempt) %>
+	 		    	<%= form_for answer, remote: true do |f| %>
+	   		    	<small>*students don't see this</small>
+							<div class="form-group">
+								<%= f.select :marks, (0..question.marks), {}, class: "form-control" %>
+							</div>
+							<div class="form-group">
+								<%= f.label :remarks %>
+								<%= f.text_area :remarks, class: "form-control" %>
+							</div>
+							<div class="form-group">
+								<%= f.submit "Evaluate Answer", class: "btn btn-default" %>
+							</div>
+		    		<% end %>
 		    	<% end %>
-		    <% end %>
-		    <%= "Correct Choice: #{question.correct_option}" if question.correct_option %>
-	    <% end %>
-	  </div>
+	 			<% else %>
+    			<strong>Remarks: </strong><br/><%= question.answer_for_attempt(@attempt).try(:remarks) %>
+    		<% end %>
+			</div>
+		 </div>
+		</div>
 	</div>
 <% end %>

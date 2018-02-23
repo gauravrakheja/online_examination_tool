@@ -26,17 +26,22 @@
   <span class="badge badge-light badge-pill">
     <%= sort_link(@q, :duration) %>
   </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :start_date) %>
+  </span>
 </div>
 <div class="card-columns">
 <% @exams.each do |exam| %>
 	<div class="card" style="width: 18rem;">
 	  <div class="card-body">
 	    <h5 class="card-title">Title: <%= exam.title %></h5>
-	    <h6 class="card-subtitle mb-2 text-muted">Subject: <%= exam.subject %><br/>Duration: <%= exam.duration %> minutes<br/>attempts: <%= exam.attempts.count %></h6>
-	    <%= link_to 'Give The Exam', new_attempt_path(exam), class: 'card-link' %><br/>
+	    <h6 class="card-subtitle mb-2 text-muted">Subject: <%= exam.subject %><br/>Duration: <%= exam.duration %> minutes<br/>attempts: <%= exam.attempts.count %><br/><%= exam_start_date(exam) %></h6>
 	    <% if can? :edit, Attempt %>
-			<%= link_to 'View All The Attempts', all_attempts_path(exam) %>
-	    <% end %>
+			 <%= link_to 'View All The Attempts', all_attempts_path(exam) %><br/>
+	     <%= link_to 'Edit This Exam', edit_exam_path(exam) %>
+      <% else %>
+        <%= link_to 'Give The Exam', new_attempt_path(exam), class: 'card-link' %>
+      <% end %>
 	  </div>
 	</div>
 <% end %>

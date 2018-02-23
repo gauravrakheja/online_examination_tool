@@ -1,11 +1,13 @@
-<span class="badge badge-warning badge-pill">
-	Total Marks: <%= answer.question_marks %>
-</span>
-<% if answer.marks %>
-	<span class="badge badge-primary badge-pill">
-		Marks Obtained: <%= answer.marks %>
+<% if answer %>
+	<span class="badge badge-warning badge-pill">
+		Total Marks: <%= answer.question_marks %>
 	</span>
-	<span class="badge badge-danger badge-pill">
-		Evaluator: <%= answer.evaluated_by %>
-	</span>
+	<% if answer.marks %>
+		<span class="badge badge-primary badge-pill">
+			Marks Obtained: <%= answer.marks %>
+		</span>
+		<span class="badge badge-danger badge-pill">
+			Evaluator: <%= answer.evaluated_by %>
+		</span>
+	<% end %>
 <% end %>

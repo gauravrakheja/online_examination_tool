@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :answers, only: [:update]
   get 'exams/:exam_id/attempts', to: 'attempts#index', as: 'all_attempts'
   resources :attempts, only: [:show]
-  resources :exams, only: [:new, :create, :index]
+  resources :exams
   resources :students, only: [:index]
   post 'teachers/:user_id/confirm', to: 'teachers#update', as: 'confirm_teacher'
   resources :teachers, only: [:index]
