@@ -66,11 +66,12 @@ class Attempt < ApplicationRecord
 	end
 
 	def marks_obtained
+		return unless evaluated?
 		answers.map(&:marks).sum
 	end
 
 	def marks_percentage
-		return 0 if total_marks.nil?
+		return unless evaluated?
 		percentage = (marks_obtained / total_marks.to_f )* 100
 		percentage.truncate(2)
 	end
@@ -80,7 +81,7 @@ class Attempt < ApplicationRecord
 	end
 
 	def check_if_evaluated
-		if answers.empty? || evaluated?
+		if answers.empty? || evaluated? || answers.count < questions.count
 			return
 		elsif unchecked_answers.empty? and may_correct?
 			correct!

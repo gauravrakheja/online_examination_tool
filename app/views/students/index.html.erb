@@ -57,7 +57,7 @@
               <li class="list-group-item">
                 <%= render 'students/attempts_table', attempt: attempt %>
                 <% if attempt.evaluated? %>
-                  Marks: <%= "#{attempt.marks_obtained}/#{attempt.total_marks}" %><br/>
+                  Marks: <%= "#{attempt.try(:marks_obtained)}/#{attempt.total_marks}" %><br/>
                 <% else %>
                   Total: <%= attempt.total_marks %><br/>
                 <% end %>

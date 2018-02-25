@@ -1,0 +1,32 @@
+@import 'constants';
+
+nav{
+	background-color: $nav-bg;
+	font-family: $default-font-family;
+}
+
+.nav-tabs{
+	border: none;
+}
+
+.nav-link, .nav-link:hover{
+	color: $primary-text-color;
+}
+
+.navbar-search-form{
+	label{
+		color: white;
+		font-weight: bold;
+	}
+	input{
+		height: 100%;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		border: 1px solid black;
+		border-radius: 2px;
+	}
+	.nav-link{
+		background: none;
+		font-weight: bold;
+	}
+}
