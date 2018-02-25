@@ -35,8 +35,10 @@ class ExamsController < ApplicationController
 	def index
 		if can? :manage, Exam
 			exams = Exam.all
+			@upcoming_exams = Exam.upcoming.sample(3)
 		else
-			exams = Exam.live
+			exams = Exam.live.for_student(current_user)
+			@upcoming_exams = Exam.upcoming.for_student(current_user).sample(3)
 		end
 		@q = exams.ransack(params[:q])
 		@exams = @q.result
@@ -53,6 +55,6 @@ class ExamsController < ApplicationController
 	end
 
 	def exam_params
-		params.require(:exam).permit(:subject, :title, :start_date, :duration, questions_attributes: [:text, :marks, :answer_type, :option1, :option2, :option3, :option4, :correct_option, :_destroy, :id])
+		params.require(:exam).permit(:subject, :title, :start_date, :duration, :course, :semester, questions_attributes: [:text, :marks, :answer_type, :option1, :option2, :option3, :option4, :correct_option, :_destroy, :id])
 	end
 end

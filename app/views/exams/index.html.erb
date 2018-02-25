@@ -1,18 +1,13 @@
-<div class="white student-searchbar">
-  <%= search_form_for @q do |f| %>
-  <div class="row align-items-center">
-    <div class="col-4">
-      <%= f.label :title_or_subject_cont %>
-    </div>
-    <div class="col-4">
-      <%= f.search_field :title_or_subject_cont, class: "form-control" %>
-    </div>
-    <div class="col-4">
-      <%= f.submit "Search", class: 'btn btn-primary' %>
-    </div>
-  </div>
-  <% end %>
-</div>
+<% content_for :search do %> 
+    <%= search_form_for @q, class: 'form-inline student-search-form' do |f| %>
+      <li class="nav-item">
+        <%= f.search_field :title_or_subject_cont, class: "form-control", placeholder: "Title/Subject"%>
+      </li>
+      <li class="nav-item">
+        <%= f.submit "Search", class: 'nav-link' %>
+      </li>
+    <% end %>
+<% end %>
 <div align="center">
   <span class="badge badge-light badge-pill">
     <%= link_to 'Sort By:', '#' %>
@@ -29,6 +24,21 @@
   <span class="badge badge-light badge-pill">
     <%= sort_link(@q, :start_date) %>
   </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :course) %>
+  </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :semester) %>
+  </span>
+</div>
+<div align="center" class="upcoming-exams">
+    <span class="badge badge-light"><strong>Upcoming Exams:</strong></span>
+  <% @upcoming_exams.each do |upcoming_exam| %>
+    <span class="badge badge-light">
+      <%= upcoming_exam.title %>
+      (<%= upcoming_exam.start_date.strftime("%d/%m/%Y") %>)
+    </span>
+  <% end %>
 </div>
 <div class="card-columns">
 <% @exams.each do |exam| %>
@@ -37,6 +47,8 @@
 	    <h5 class="card-title"><%= exam.title %></h5>
 	    <h6 class="card-subtitle mb-2 text-muted">
         Subject: <%= exam.subject %><br/>
+        course: <%= exam.course %><br/>
+        semester: <%= exam.semester %><br/>
         Duration: <%= exam.duration %> minutes<br/>
         Questions: <%= exam.questions.count %><br/>
         attempts: <%= exam.attempts.count %><br/>

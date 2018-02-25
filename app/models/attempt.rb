@@ -7,7 +7,7 @@ class Attempt < ApplicationRecord
 	has_many :answers
 
 	delegate :title, :subject, to: :exam, prefix: true, allow_nil: :true
-	delegate :duration, to: :exam, allow_nil: true
+	delegate :duration, :can_give?, to: :exam, allow_nil: true
 
 	accepts_nested_attributes_for :answers, :questions, allow_destroy: true, reject_if: :all_blank
 
@@ -20,7 +20,13 @@ class Attempt < ApplicationRecord
 	  event :correct do
 	    transitions :from => :pending, :to => :evaluated
 	  end
-   end
+ 	end
+
+ 	class << self
+ 		def without(user)
+ 			where.not(user: user)
+ 		end
+ 	end
 
 	def unchecked_answers
 		answers.reject { |answer| answer.marks.present? }

@@ -2,5 +2,5 @@
 	$('nav').append('<div class="alert alert-success" role="alert">Answer Evaluated  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 	$('<%= "#marks_#{@answer.id}" %>').html('<%= escape_javascript(render(partial: "attempts/marks-obtained", locals: {answer: @answer})).html_safe %>')
 <% else %>
-	$('nav').append('<div class="alert alert-danger" role="alert">Answer Could not be evaludated</div>');
+	$('nav').append('<div class="alert alert-danger" role="alert">Answer Could not be evaludated<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 <% end %>

@@ -1,8 +1,9 @@
 class AttemptsController < ApplicationController
 	before_action :find_exam, only: [:new, :create, :index]
+	before_action :can_attempt?, only: [:new]
 
 	def new
-    	@attempt = @exam.attempts.new
+  	@attempt = @exam.attempts.new
 	end
 
 	def create
@@ -34,6 +35,13 @@ class AttemptsController < ApplicationController
 	end
 
 	private
+
+	def can_attempt?
+		unless @exam.can_give?(current_user)
+			flash[:alert] = "You Cannot Give This Exam"
+			redirect_to(exams_path) and return
+		end
+	end
 
 	def submit_answers
 		unsaved_answers = []

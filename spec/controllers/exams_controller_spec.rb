@@ -21,15 +21,19 @@ describe ExamsController, type: :controller do
   describe '#index' do
     let(:exam) { create(:exam) }
     let(:exam1) { create(:exam) }
-    let(:q) { double(:q, result: [exam, exam1]) }
+    let(:exam2) { create(:exam) }
+    let(:q) { double(:q, result: [exam, exam1, exam2]) }
 
     before do
+      allow(Exam).to receive(:upcoming).and_return([exam1, exam2])
       allow(Exam).to receive(:ransack).and_return(q)
     end
 
     it 'should give all the exams' do
       get :index
-      expect(assigns(:exams)).to include(exam, exam1)
+      expect(assigns(:upcoming_exams)).to include(exam1, exam2)
+      expect(assigns(:upcoming_exams)).to_not include exam
+      expect(assigns(:exams)).to include(exam, exam1, exam2)
     end
   end
 end

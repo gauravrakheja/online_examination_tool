@@ -1,0 +1,23 @@
+@import 'constants';
+
+.student-search-form{
+	label{
+		color: white;
+		font-weight: bold;
+	}
+	input{
+		height: 100%;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		border: 1px solid black;
+		border-radius: 0px;
+	}
+	.nav-link{
+		background: none;
+		font-weight: bold;
+	}
+}
+
+.student-details{
+	font-size: 13px;
+}

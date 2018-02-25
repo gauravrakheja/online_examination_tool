@@ -20,7 +20,7 @@ FactoryBot.define do
 
 		factory :student, class: User do
 			role 'student'
-			course { Faker::RickAndMorty.character }
+			course { AVAILABLE_COURSES.sample }
 			roll_number { 
 				[11, 23, 44, 56, 23].sample(1)[0].to_s + "wjsb7015"
 			}

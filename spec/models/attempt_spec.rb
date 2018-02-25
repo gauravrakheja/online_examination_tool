@@ -9,9 +9,23 @@ describe Attempt, type: :model do
   it { should delegate_method(:title).to(:exam).with_prefix(true) }
   it { should delegate_method(:subject).to(:exam).with_prefix(true) }
   it { should delegate_method(:duration).to(:exam) }
+  it { should delegate_method(:can_give?).to(:exam) }
 
   it { should accept_nested_attributes_for(:answers) }
   it { should accept_nested_attributes_for(:questions) }
+
+  describe 'without' do
+    let(:student) { create(:student) }
+    let(:student1) { create(:student) }
+    let!(:attempt) { create(:attempt, user: student) }
+    let!(:attempt1) { create(:attempt, user: student1) }
+
+    it 'should return the attempts without the given student' do
+      expect(Attempt.without(student)).to include attempt1
+      expect(Attempt.without(student)).to_not include attempt
+    end
+
+  end
 
   describe '#unchecked_answers' do
     let(:answer) { create(:subjective_answer, marks: 10) }

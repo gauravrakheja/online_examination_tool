@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe AttemptsController, type: :controller do
   it { should use_before_action :find_exam }
+  it { should use_before_action :can_attempt? }
 
   let(:teacher) { create(:teacher) }
   let!(:exam) { create(:exam) }
