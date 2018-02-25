@@ -24,7 +24,43 @@ describe Attempt, type: :model do
       expect(Attempt.without(student)).to include attempt1
       expect(Attempt.without(student)).to_not include attempt
     end
+  end
 
+  describe 'sum_of_total_marks' do
+    let!(:attempt) { create(:attempt) }
+    let!(:attempt1) { create(:attempt) }
+
+    before do
+      allow_any_instance_of(Attempt).to receive(:total_marks) { 10 }
+    end
+
+    it 'should return the sum of total marks' do
+      expect(Attempt.sum_of_total_marks).to eq 20
+    end
+  end
+
+  describe 'sum_of_marks_obtained' do
+    let!(:attempt) { create(:attempt) }
+    let!(:attempt1) { create(:attempt) }
+
+    before do
+      allow_any_instance_of(Attempt).to receive(:marks_obtained) { 5 }
+    end
+
+    it 'should return the sum of total marks' do
+      expect(Attempt.sum_of_marks_obtained).to eq 10
+    end
+  end
+
+  describe 'percentage_for_evaluated' do
+    let(:evaluated) { double(:evaluated, sum_of_marks_obtained: 80, sum_of_total_marks: 100) }
+    before do
+      allow(Attempt).to receive(:evaluated) { evaluated }
+    end
+
+    it 'should give the percentage of all the attempts evaluated' do
+      expect(Attempt.percentage_for_evaluated).to eq 80.00
+    end
   end
 
   describe '#unchecked_answers' do
@@ -93,6 +129,19 @@ describe Attempt, type: :model do
 
     it 'should return the duration added to the correct time' do
       expect(attempt.end_time).to eq(stubbed_time+attempt.duration.minutes)
+    end
+  end
+
+  describe '#marks_percentage' do
+    let(:attempt) { build_stubbed(:attempt) }
+
+    before do
+      allow(attempt).to receive(:total_marks) { 100 }
+      allow(attempt).to receive(:marks_obtained) { 10 }
+    end
+
+    it 'should give the percentage wth 2 0s' do
+      expect(attempt.marks_percentage).to eq 10.00
     end
   end
 

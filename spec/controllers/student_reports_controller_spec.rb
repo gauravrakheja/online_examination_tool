@@ -5,7 +5,8 @@ describe StudentReportsController, type: :controller do
     let(:student) { create(:student) }
 
     it 'should find the user' do
-      get :show, user_id: student.id
+      sign_in student
+      get :show, params: { user_id: student.id }
       expect(assigns(:student)).to eq(student)
     end
   end

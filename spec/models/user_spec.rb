@@ -46,6 +46,69 @@ describe User, type: :model do
     end
   end
 
+  describe '#percentage_or_zero' do
+    let(:user) { build_stubbed(:student) }
+
+    context 'when percentage for attempts exists' do
+      before do
+        allow(user).to receive(:percentage_for_attempts) { "something" }
+      end
+
+      it 'should return the value' do
+        expect(user.percentage_or_zero).to eq("something")
+      end
+    end
+
+    context 'when percentage for attempts do not exist' do
+      before do
+        allow(user).to receive(:percentage_for_attempts) { nil }
+      end
+
+      it 'should return 0' do
+        expect(user.percentage_or_zero).to eq 0
+      end
+    end
+  end
+
+  describe '#classmates' do
+    let!(:student) { create(:student, course: "BCA", semester: 2) }
+    let!(:student1) { create(:student, course: "BCA", semester: 2) }
+    let!(:student2) { create(:student, course: "BBA", semester: 2) }
+    let!(:student3) { create(:student, course: "BCA", semester: 4) }
+  
+    it 'should only return the calssmates' do
+      expect(student.classmates).to include student1, student
+      expect(student.classmates).to_not include student3, student2
+    end
+  end
+
+  describe '#rank_in_semester' do
+    let!(:student) { build_stubbed(:student) }
+    let(:ordered) { double(:ordered, index: 2) }
+    let(:classmates) { double(:classmates, ordered_by_percentage: ordered) }
+    
+    before do
+      allow(student).to receive(:classmates).and_return(classmates)
+    end
+
+    it 'should return the rank' do
+      expect(student.rank_in_semester).to eq 3
+    end
+  end
+
+  describe '#percentage_for_attempts' do
+    let(:student) { build_stubbed(:student) }
+    let(:attempts) { double(:attempts, percentage_for_evaluated: 18.0 ) }
+
+    before do
+      allow(student).to receive(:attempts).and_return(attempts)
+    end
+
+    it 'should return the percentage from the attemtps' do
+      expect(student.percentage_for_attempts).to eq 18.0
+    end
+  end
+
   describe '#confirm' do
     it 'should confirm the user' do
       expect(student.confirmed?).to eq false

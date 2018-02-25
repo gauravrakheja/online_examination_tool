@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def percentage_or_zero
-    percentage_for_attempts.nil? ? percentage_for_attempts : 0
+    percentage_for_attempts.nil? ? 0 : percentage_for_attempts
   end
 
   def teacher?
