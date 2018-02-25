@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-          registrations: 'users/registrations'
+          registrations: 'users/registrations',
+          sessions: 'users/sessions'
         }
   root 'pages#home'
   get 'exams/:exam_id/attemps/new', to: 'attempts#new', as: 'new_attempt'

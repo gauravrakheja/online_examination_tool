@@ -1,16 +1,11 @@
 <nav>
   <ul class="nav nav-tabs">
-    <% if current_user %>
-      <li class="nav-item">
-        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-      </li>
-    <% end %>
+    <li class="nav-item">
+      <%= link_to "Registered Students", students_path, class: "nav-link" %>
+    </li>
     <% if can? :manage, User %>
-      <%= link_to 'Unconfirmed Teachers', teachers_path, class: 'nav-link' %>
-    <% end %>
-    <% if can? :create, Exam %>
       <li class="nav-item">
-        <%= link_to 'Create New Exam', new_exam_path, class: "nav-link" %>
+        <%= link_to 'Unconfirmed Teachers', teachers_path, class: 'nav-link' %>
       </li>
     <% end %>
     <% if can? :read, Exam %>
@@ -18,8 +13,15 @@
         <%= link_to 'All Exams', exams_path, class: "nav-link" %>
       </li>
     <% end %>
-    <li class="nav-item">
-      <%= link_to "Registered Students", students_path, class: "nav-link" %>
-    </li>
+    <% if can? :create, Exam %>
+      <li class="nav-item">
+        <strong><%= link_to 'Create New Exam', new_exam_path, class: "nav-link" %></strong>
+      </li>
+    <% end %>
+    <% if current_user %>
+      <li class="nav-item pull-right">
+        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+    <% end %>
   </ul>
 </nav>

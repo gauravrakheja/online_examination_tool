@@ -1,3 +1,9 @@
+$default-font-family: 'lato', sans-serif;
+$nav-bg: black;
+$primary-text-color: white;
+$primary-bg: #92d3a3;
+$primary-btn-color: darken($primary-bg, 50);
+
 .options-for-questions{
 	display: none;
 }
@@ -6,38 +12,55 @@
 	margin: 10px;
 }
 
-
 body{
-	background-image: url(/bg1.jpg);
+	background-color: $primary-bg;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: $default-font-family;
 }
 
 nav{
-	background-color: white;
-	opacity: 0.9;
+	background-color: $nav-bg;
+	font-family: $default-font-family;
+}
+
+.nav-tabs{
+	border: none;
+}
+
+.nav-link, .nav-link:hover{
+	color: $primary-text-color;
+}
+
+.pull-right{
+	position: absolute;
+	right: 0;
 }
 
 .white{
+	border: 1px solid black;
+	border-radius: 10px;
 	margin-top: 10px;
 	background-color: white;
-	font-weigth: bold;
-	opacity: 0.8;
+	font-weight: bold;
 	padding: 20px;
 	font-weight: bold;
 }
 
-.card{
-	margin: 5px;
-	opacity: 0.8;
-}
-
-.jumbotron{
-	opacity: 0.8;
-	background-color: white;
-	margin-top: 10px;
+.attempt-details-table{
+	margin-top: -20px;
+	td{
+		padding: 2px;
+	}
 }
 
 .student-searchbar{
 	margin: 10px;
+}
+
+.student-details{
+	font-size: 13px;
 }
 
 .correct-option-field{
@@ -47,4 +70,48 @@ nav{
 .turbolinks-progress-bar {
   height: 2px;
   background-color: blue;
+}
+
+.link-primary{
+	color: $primary-btn-color;
+	font-style: italic;
+}
+
+.link-primary:hover{
+	font-weight: bold;
+	color: $primary-btn-color;
+}
+
+
+
+//bootstrap overrides
+.jumbotron{
+	border: 1px solid black;
+	background-color: white;
+	margin-top: 10px;
+	border-radius: 10px;
+}
+
+.btn-primary{
+	background-color: $primary-btn-color;
+	border-color: $primary-btn-color;
+}
+
+.btn-primary:hover{
+	background-color: $primary-btn-color;
+	border-color: $primary-btn-color;
+	font-weight: bold;
+	box-shadow: 1px 2px #888888;
+}
+
+.card{
+	margin: 5px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.badge{
+	a{
+		@extend .link-primary; 
+	}
 }

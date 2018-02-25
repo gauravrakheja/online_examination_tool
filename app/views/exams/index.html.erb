@@ -42,10 +42,10 @@
         attempts: <%= exam.attempts.count %><br/>
         <%= exam_start_date(exam) %></h6>
 	    <% if can? :edit, Attempt %>
-			 <%= link_to 'View All The Attempts', all_attempts_path(exam) %><br/>
-	     <%= link_to 'Edit This Exam', edit_exam_path(exam) %>
+			 <%= link_to 'View All The Attempts', all_attempts_path(exam), class: 'link-primary' %><br/>
+	     <%= link_to 'Edit This Exam', edit_exam_path(exam), class: 'link-primary' %>
       <% else %>
-        <%= link_to 'Give The Exam', new_attempt_path(exam), class: 'card-link' %>
+        <%= link_to 'Give The Exam', new_attempt_path(exam), class: 'link-primary' %>
       <% end %>
 	  </div>
 	</div>
