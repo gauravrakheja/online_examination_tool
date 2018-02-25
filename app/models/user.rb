@@ -43,6 +43,10 @@ class User < ApplicationRecord
   	role == STUDENT_ROLE
   end
 
+  def percentage_for_attempts
+    attempts.percentage_for_evaluated
+  end
+
   private
 
   def roll_number_regex

@@ -1,0 +1,56 @@
+<div class="card text-center">
+  <div class="card-header">
+    <%= @student.name %><br/>
+    <%= @student.roll_number %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= "#{@student.course}, #{@student.semester_ordinalize} Semester" %></h5>
+  </div>
+  <div class="card-footer text-muted">
+    Report Card
+  </div>
+</div>
+<div class="white full-width">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>
+          Subject
+        </th>
+        <th>
+          Marks Obtained
+        </th>
+        <th>
+          Total Marks
+        </th>
+        <th>
+          Perctage
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student.attempts.each do |attempt| %>
+        <% if attempt.evaluated? %>
+          <tr>
+            <td>
+              <%= attempt.exam_subject %>
+            </td>
+            <td>
+              <%= attempt.marks_obtained %>
+            </td>
+            <td>
+              <%= attempt.total_marks %>
+            </td>
+            <td>
+              <%= attempt.marks_percentage %>%
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="clearfix">
+      Total:
+      <%= @student.percentage_for_attempts %>
+  </div>
+</div>

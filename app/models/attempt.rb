@@ -26,6 +26,31 @@ class Attempt < ApplicationRecord
  		def without(user)
  			where.not(user: user)
  		end
+
+ 		def evaluated
+ 			where(status: 'evaluated')
+ 		end
+
+ 		def sum_of_total_marks
+ 			sum = 0
+ 			all.each do |attempt|
+ 				sum += attempt.total_marks
+ 			end
+ 			sum
+ 		end
+
+ 		def sum_of_marks_obtained
+  		sum = 0
+ 			all.each do |attempt|
+ 				sum += attempt.marks_obtained if attempt.marks_obtained
+ 			end
+			sum
+ 		end
+
+ 		def percentage_for_evaluated
+ 			percentage = evaluated.sum_of_marks_obtained / evaluated.sum_of_total_marks.to_f * 100
+ 			percentage.truncate(2)
+ 		end
  	end
 
 	def unchecked_answers
@@ -42,6 +67,11 @@ class Attempt < ApplicationRecord
 
 	def marks_obtained
 		answers.map(&:marks).sum
+	end
+
+	def marks_percentage
+		percentage = (marks_obtained / total_marks.to_f )* 100
+		percentage.truncate(2)
 	end
 
 	def end_time
