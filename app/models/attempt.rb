@@ -70,6 +70,7 @@ class Attempt < ApplicationRecord
 	end
 
 	def marks_percentage
+		return 0 if total_marks.nil?
 		percentage = (marks_obtained / total_marks.to_f )* 100
 		percentage.truncate(2)
 	end

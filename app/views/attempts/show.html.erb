@@ -1,8 +1,6 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4" align="center"><%= @attempt.exam.title %></h1>
-    <p class="lead" align="center"><%= @attempt.user.name %><br/><%= @attempt.status %></p>
-  </div>
+<div class="white full-width">
+	<h1 class="display-4" align="center"><%= @attempt.exam.title %></h1>
+	<p class="lead" align="center"><%= @attempt.user.name %> <%= @attempt.marks_percentage %> %<br/><%= @attempt.status %></p>
 </div>
 <% @attempt.questions.each do |question| %>
 	<div class="card">

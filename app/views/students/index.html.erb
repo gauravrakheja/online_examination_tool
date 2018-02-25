@@ -1,5 +1,5 @@
 <% content_for :search do %> 
-    <%= search_form_for @q, url: students_path, class: 'form-inline student-search-form' do |f| %>
+    <%= search_form_for @q, url: students_path, class: 'form-inline navbar-search-form' do |f| %>
       <li class="nav-item">
         <%= f.search_field :name_or_email_or_roll_number_cont, class: "form-control", placeholder: "Name/Email/Roll No" %>
       </li>

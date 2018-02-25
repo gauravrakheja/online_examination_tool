@@ -1,12 +1,12 @@
 <% if answer %>
-	<span class="badge badge-warning badge-pill">
+	<span class="badge badge-primary badge-pill">
 		Total Marks: <%= answer.question_marks %>
 	</span>
 	<% if answer.marks.present? %>
 		<span class="badge badge-primary badge-pill">
 			Marks Obtained: <%= answer.marks %>
 		</span>
-		<span class="badge badge-danger badge-pill">
+		<span class="badge badge-primary badge-pill">
 			Evaluator: <%= answer.evaluated_by %>
 		</span>
 	<% end %>

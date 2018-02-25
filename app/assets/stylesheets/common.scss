@@ -24,19 +24,6 @@ body{
 	font-family: $default-font-family;
 }
 
-nav{
-	background-color: $nav-bg;
-	font-family: $default-font-family;
-}
-
-.nav-tabs{
-	border: none;
-}
-
-.nav-link, .nav-link:hover{
-	color: $primary-text-color;
-}
-
 .pull-right{
 	position: absolute;
 	right: 0;
