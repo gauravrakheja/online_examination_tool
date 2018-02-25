@@ -43,7 +43,7 @@ describe Attempt, type: :model do
     
     context 'when the attempt is corrected' do
       before do
-        allow(attempt).to receive(:status) { "Evaluated" }
+        allow(attempt).to receive(:status) { "evaluated" }
       end
 
       it 'should return true' do
