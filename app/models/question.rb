@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-	belongs_to :exam
+	belongs_to :exam, dependent: :destroy
 	has_many :answers
 	has_many :attempts, through: :exam
 	validates :text, presence: true

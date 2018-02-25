@@ -1,10 +1,13 @@
 class Answer < ApplicationRecord
-	belongs_to :question
-	belongs_to :attempt
-	belongs_to :evaluator, class_name: 'User', foreign_key: 'user_id', optional: true
-	has_one :exam, through: :question
+	belongs_to :question, dependent: :destroy
+	belongs_to :attempt, dependent: :destroy
+	belongs_to :evaluator, class_name: 'User', foreign_key: 'user_id', optional: true, dependent: :destroy
+	has_one :exam, through: :question, dependent: :destroy
+	
 	validates :text, presence: true, if: :subjective?
 	validates :submitted_option, presence: true, if: :objective?
+	validate :marks_less_than_question
+
 	after_save :correct_answer, if: :objective?
 	after_save :update_attempt
 
@@ -43,6 +46,13 @@ class Answer < ApplicationRecord
 				mark = 0
 			end
 			update_attributes!(marks: mark)
+		end
+	end
+
+	def marks_less_than_question
+		return unless marks
+		if marks > question.marks
+			errors.add(:marks, "Must be less than the question's marks")
 		end
 	end
 

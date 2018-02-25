@@ -1,8 +1,8 @@
 class Attempt < ApplicationRecord
 	include AASM
 
-	belongs_to :user
-	belongs_to :exam
+	belongs_to :user, dependent: :destroy
+	belongs_to :exam, dependent: :destroy
 	has_many :questions, through: :exam
 	has_many :answers
 
