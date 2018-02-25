@@ -1,6 +1,6 @@
 Turbolinks.setProgressBarDelay(1);
 
-$(document).ready(function(){
+$(document).on("turbolinks:load", function(){
 	hideStudentFields();
 	$('#new_user').on("change", function(){
 		hideStudentFields();

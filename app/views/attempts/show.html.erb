@@ -31,7 +31,6 @@
 						</ul>
 			  	</ul>
 		    	<p class="card-text"><strong>Submission: </strong><%= "#{objective_answer_for_pair(question, @attempt)}"%>
-	 		    <strong>Correct Choice: </strong><%= "#{question.correct_option}" if question.correct_option %>
 		   		</p>
 		   	<% else %>
 		   		<p class="card-text"><strong>Submission: </strong><%= "#{subjective_answer_for_pair(question, @attempt)}"%>
@@ -53,6 +52,7 @@
 								<%= f.submit "Evaluate Answer", class: "btn btn-default" %>
 							</div>
 		    		<% end %>
+	 			    <strong>Correct Choice: </strong><%= "#{question.correct_option}" if question.correct_option %>
 		    	<% end %>
 	 			<% else %>
     			<strong>Remarks: </strong><br/><%= question.answer_for_attempt(@attempt).try(:remarks) %>

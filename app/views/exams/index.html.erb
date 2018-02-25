@@ -35,7 +35,12 @@
 	<div class="card" style="width: 18rem;">
 	  <div class="card-body">
 	    <h5 class="card-title"><%= exam.title %></h5>
-	    <h6 class="card-subtitle mb-2 text-muted">Subject: <%= exam.subject %><br/>Duration: <%= exam.duration %> minutes<br/>attempts: <%= exam.attempts.count %><br/><%= exam_start_date(exam) %></h6>
+	    <h6 class="card-subtitle mb-2 text-muted">
+        Subject: <%= exam.subject %><br/>
+        Duration: <%= exam.duration %> minutes<br/>
+        Questions: <%= exam.questions.count %><br/>
+        attempts: <%= exam.attempts.count %><br/>
+        <%= exam_start_date(exam) %></h6>
 	    <% if can? :edit, Attempt %>
 			 <%= link_to 'View All The Attempts', all_attempts_path(exam) %><br/>
 	     <%= link_to 'Edit This Exam', edit_exam_path(exam) %>
