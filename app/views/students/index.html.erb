@@ -45,8 +45,9 @@
               Email: <%= student.email %><br/>
           </h5>
           <% if student.attempts.count > 0 %>
+            <%= link_to "View Report Card",report_path(student), class: "link-primary" %><br/>
             <a class="link-primary" data-toggle="collapse" href=<%= "##{student.id}"%> role="button" aria-expanded="false" aria-controls="collapseExample">
-              Show Exam Details
+              Show Attempts
             </a>
           <% end %>
         </div>

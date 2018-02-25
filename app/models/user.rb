@@ -21,6 +21,14 @@ class User < ApplicationRecord
     def students
       where(role: STUDENT_ROLE)
     end
+
+    def ordered_by_percentage
+      all.sort_by { |user| user.percentage_or_zero }
+    end
+  end
+
+  def percentage_or_zero
+    percentage_for_attempts.nil? ? percentage_for_attempts : 0
   end
 
   def teacher?
@@ -41,6 +49,14 @@ class User < ApplicationRecord
 
   def student?
   	role == STUDENT_ROLE
+  end
+
+  def classmates
+    User.where(course: course, semester: semester)
+  end
+
+  def rank_in_semester
+    classmates.ordered_by_percentage.index(self) + 1
   end
 
   def percentage_for_attempts

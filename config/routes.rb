@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :students, only: [:index]
   post 'teachers/:user_id/confirm', to: 'teachers#update', as: 'confirm_teacher'
   resources :teachers, only: [:index]
-  get 'student_report/:user_id', to: 'student_reports#show'
+  get 'student_report/:user_id', to: 'student_reports#show', as: 'report'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

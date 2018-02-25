@@ -24,6 +24,9 @@ gem "cocoon"
 gem 'ransack'
 gem 'aasm'
 gem "font-awesome-rails"
+gem 'pdfkit'
+gem 'render_anywhere'
+gem 'wkhtmltopdf-binary'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
