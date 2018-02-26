@@ -1,0 +1,11 @@
+<div class="white full-width">
+  <h1 align="center"><%= @room.title %></h1>
+  <h2 align="center"><%= @room.name %></h2>
+  <h2 align="center"><%= @room.subject %></h2>
+  <%= render partial: 'messages/message_form', locals: {message: @message, room: @room}%>
+</div>
+  <div class="panel-body" id=<%= "messages_#{@room.id}" %>>
+    <% @room.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </div>

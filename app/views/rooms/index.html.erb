@@ -1,0 +1,42 @@
+<% content_for :search do %> 
+    <%= search_form_for @q, class: 'form-inline navbar-search-form' do |f| %>
+      <li class="nav-item">
+        <%= f.search_field :name_or_title_or_subject_cont, class: "form-control", placeholder: "Name/Title/Subject" %>
+      </li>
+      <li class="nav-item">
+        <%= f.submit "Search", class: 'nav-link' %>
+      </li>
+    <% end %>
+<% end %>
+<div class="white" align="center">
+  <h1>Discussions</h1>
+  <%= link_to 'Create A New Disussion', new_room_path, class: "link-primary" %>
+</div>
+<div align="center">
+  <span class="badge badge-light badge-pill">
+    <%= link_to 'Sort By:', '#' %>
+  </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :name) %>
+  </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :course) %>
+  </span>
+  <span class="badge badge-light badge-pill">
+    <%= sort_link(@q, :semester) %>
+  </span>
+</div>
+<div class="card-columns">
+<% @rooms.each do |room| %>
+  <div class="card">
+    <div class="card-header">
+      <%= room.title %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= room.name %></h5>
+      <p class="card-text"><%= room.subject %><br/>
+      <%= link_to 'Join Discussion', room_path(room), class: 'link-primary' %>
+    </div>
+  </div>
+<% end %>
+</div>

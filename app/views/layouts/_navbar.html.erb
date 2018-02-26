@@ -19,6 +19,9 @@
       </li>
     <% end %>
     <%= content_for :search if content_for? :search %>
+    <li class="nav-item">
+      <strong><%= link_to 'Discussions', rooms_path, class: "nav-link" %></strong>
+    </li>
     <% if current_user %>
       <li class="nav-item pull-right">
         <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>

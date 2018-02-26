@@ -1,0 +1,20 @@
+<div class="white">
+  <h1 align="center">Start a Disucssion</h1>
+  <%= form_for room do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :subject %>
+      <%= f.text_field :subject, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary", id: "create-room" %>
+    </div>
+  <% end %>
+</div>

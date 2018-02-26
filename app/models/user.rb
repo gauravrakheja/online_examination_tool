@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validate :roll_number_regex, if: :student?
 
   has_many :attempts
-
+  has_many :messages
   scope :teachers, -> { where(role: TEACHER_ROLE, confirmed: true) }
   scope :unconfirmed_teachers, -> { where(role: TEACHER_ROLE, confirmed: nil) }
 

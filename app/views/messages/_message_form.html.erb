@@ -1,0 +1,12 @@
+<%= form_for message, html: { class: "form-inline" }, remote: true, authenticity_token: true do |f|%>
+	<div class="form-group col-lg-2 col-sm-12">
+  		<%= f.label :your_message %>:
+	</div>
+	<div class="form-group col-lg-6 col-sm-12">
+  		<%= f.text_field :content, class: "full-width form-control", autocomplete: "off", data: {textarea: "message"}%>
+	</div>
+	<div class="form-group col-lg-4 col-sm-12">
+  		<%= f.hidden_field :room_id, value: room.id %>
+  		<%= f.submit "send", class: "btn btn-primary", data: { send: "message" } %>
+	</div>
+<%end%>

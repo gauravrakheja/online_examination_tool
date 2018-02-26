@@ -1,0 +1,15 @@
+@import 'constants';
+
+#new_message{
+	input{
+		margin: 10px;
+	}
+	.btn-primary{
+		width: 100%;
+		padding: 16px;
+	}
+	#message_content{
+		widht: 100%;
+		padding: 16px;
+	}
+}
