@@ -32,19 +32,11 @@ class Attempt < ApplicationRecord
  		end
 
  		def sum_of_total_marks
- 			sum = 0
- 			all.each do |attempt|
- 				sum += attempt.total_marks
- 			end
- 			sum
+ 			all.map(&:total_marks).reduce(:+)
  		end
 
  		def sum_of_marks_obtained
-  		sum = 0
- 			all.each do |attempt|
- 				sum += attempt.marks_obtained if attempt.marks_obtained
- 			end
-			sum
+  		evaluated.map(&:marks_obtained).reduce(:+)
  		end
 
  		def percentage_for_evaluated

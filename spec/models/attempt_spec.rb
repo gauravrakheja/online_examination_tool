@@ -44,6 +44,7 @@ describe Attempt, type: :model do
     let!(:attempt1) { create(:attempt) }
 
     before do
+      allow(Attempt).to receive(:evaluated).and_return([attempt, attempt1])
       allow_any_instance_of(Attempt).to receive(:marks_obtained) { 5 }
     end
 
@@ -136,6 +137,7 @@ describe Attempt, type: :model do
     let(:attempt) { build_stubbed(:attempt) }
 
     before do
+      allow(attempt).to receive(:evaluated?) { true }
       allow(attempt).to receive(:total_marks) { 100 }
       allow(attempt).to receive(:marks_obtained) { 10 }
     end
@@ -171,12 +173,14 @@ describe Attempt, type: :model do
     end
 
     context 'when unchecked answers empty' do
-      let(:answers) { double(:answers, empty?: false) }
+      let(:answers) { double(:answers, empty?: false, count: 10) }
+      let(:questions) { double(:questions, count: 10) }
       let(:unchecked_answers) { double(:unchecked_answers, empty?: true) }
       
       
       before do
         allow(attempt).to receive(:answers) { answers }
+        allow(attempt).to receive(:questions) { questions }
         allow(attempt).to receive(:unchecked_answers) { unchecked_answers }
       end
 

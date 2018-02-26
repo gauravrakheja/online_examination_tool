@@ -24,7 +24,7 @@
           Total Marks
         </th>
         <th>
-          Perctage
+          Percentage
         </th>
       </tr>
     </thead>
@@ -51,7 +51,7 @@
   </table>
   <div class="clearfix">
       Total:
-      <%= student.percentage_for_attempts.nil? ? student.percentage_for_attempts : '-' %><br/>
+      <%= !student.percentage_for_attempts.nil? ? student.percentage_for_attempts : '-' %> % <br/>
       Rank In Semester: <%= student.rank_in_semester %>
   </div>
 </div>
