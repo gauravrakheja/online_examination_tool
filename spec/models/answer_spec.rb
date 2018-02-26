@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: answers
+#
+#  id               :integer          not null, primary key
+#  question_id      :integer
+#  text             :string
+#  marks            :integer
+#  attempt_id       :integer
+#  submitted_option :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  user_id          :integer
+#  remarks          :string
+#
+
 require 'rails_helper'
 
 describe Answer, type: :model do

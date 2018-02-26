@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: exams
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  subject    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  duration   :integer
+#  start_date :date
+#  course     :string
+#  semester   :integer
+#
+
 class Exam < ApplicationRecord
 	has_many :attempts
 	has_many :questions

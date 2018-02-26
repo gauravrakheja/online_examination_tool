@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: attempts
+#
+#  id         :integer          not null, primary key
+#  exam_id    :integer
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  aasm_state :string
+#
+
 require 'rails_helper'
 
 describe Attempt, type: :model do

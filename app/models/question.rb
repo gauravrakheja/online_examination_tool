@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id             :integer          not null, primary key
+#  exam_id        :integer
+#  text           :string
+#  marks          :integer
+#  answer_type    :string
+#  option1        :string
+#  option2        :string
+#  option3        :string
+#  option4        :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  correct_option :integer
+#
+
 class Question < ApplicationRecord
 	belongs_to :exam, dependent: :destroy
 	has_many :answers

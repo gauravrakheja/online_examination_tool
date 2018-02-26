@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @q = Room.ransack(params[:q])
+    @q = Room.for_user(current_user).ransack(params[:q])
     @rooms = @q.result.order(created_at: :desc)
   end
 

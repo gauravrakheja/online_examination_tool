@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: attempts
+#
+#  id         :integer          not null, primary key
+#  exam_id    :integer
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  aasm_state :string
+#
+
 class Attempt < ApplicationRecord
 	include AASM
 
@@ -40,6 +52,7 @@ class Attempt < ApplicationRecord
  		end
 
  		def percentage_for_evaluated
+ 			return nil if evaluated.sum_of_marks_obtained.nil?
  			percentage = evaluated.sum_of_marks_obtained / evaluated.sum_of_total_marks.to_f * 100
  			percentage.truncate(2)
  		end
