@@ -52,6 +52,10 @@ class User < ApplicationRecord
     end
   end
 
+  def top_scorers_in_class(number)
+    classmates.ordered_by_percentage.first(number)
+  end
+
   def percentage_or_zero
     percentage_for_attempts.nil? ? 0 : percentage_for_attempts
   end
@@ -94,6 +98,10 @@ class User < ApplicationRecord
       hash["#{attempt.exam_title}_#{index}"] = attempt.marks_percentage unless attempt.marks_percentage.nil?
     end
     hash
+  end
+
+  def upcoming_exams
+    Exam.for_student(user).upcoming
   end
 
   private

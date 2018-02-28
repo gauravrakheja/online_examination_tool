@@ -2,7 +2,6 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
   received: function(data) {
     $('#message_content').val('');
     var id = '#messages_' + data.id;
-    console.log(id);
     return $(id).prepend(this.renderMessage(data));
   },
   renderMessage: function(data) {

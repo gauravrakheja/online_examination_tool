@@ -31,15 +31,6 @@
     <%= sort_link(@q, :semester) %>
   </span>
 </div>
-<div align="center" class="upcoming-exams">
-    <span class="badge badge-light"><strong>Upcoming Exams:</strong></span>
-  <% @upcoming_exams.each do |upcoming_exam| %>
-    <span class="badge badge-light">
-      <%= upcoming_exam.title %>
-      (<%= upcoming_exam.start_date.strftime("%d/%m/%Y") %>)
-    </span>
-  <% end %>
-</div>
 <div class="card-columns">
 <% @exams.each do |exam| %>
 	<div class="card" style="width: 18rem;">

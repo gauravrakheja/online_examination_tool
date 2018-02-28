@@ -35,10 +35,8 @@ class ExamsController < ApplicationController
 	def index
 		if can? :manage, Exam
 			exams = Exam.all
-			@upcoming_exams = Exam.upcoming.sample(3)
 		else
 			exams = Exam.live.for_student(current_user)
-			@upcoming_exams = Exam.upcoming.for_student(current_user).sample(3)
 		end
 		@q = exams.ransack(params[:q])
 		@exams = @q.result

@@ -1,2 +1,5 @@
 <%= render 'student_reports/report', student: @student %>
+<div class="white full-width">
+<%= column_chart(@student.marks_with_subjects) %>
+</div>
 <%= link_to 'Download as PDF', report_path(@student, format: :pdf), class: "link-primary" %>

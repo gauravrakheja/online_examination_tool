@@ -20,7 +20,6 @@ class Attempt < ApplicationRecord
 
 	delegate :title, :subject, to: :exam, prefix: true, allow_nil: :true
 	delegate :duration, :can_give?, to: :exam, allow_nil: true
-
 	accepts_nested_attributes_for :answers, :questions, allow_destroy: true, reject_if: :all_blank
 
 	alias_attribute :status, :aasm_state
