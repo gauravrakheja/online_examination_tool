@@ -18,6 +18,9 @@ constant.
 - students only see live exams which are of the same course and semester, while teachers and admins see all the exams. They also have the ability
 to see all the attempts for an exam or correct an exam.
 
+- There is also a discussions section which is implemented using ActionCable which uses websockets so any posts made to a forum gets updated for all 
+the users simultaneously.
+
 - For more info please refer to the code, I've tried keeping it simple and have created a class for each of the entities, most of the logic is encapsulated in the models. 
 
 - Since this is a college project and they do not require me to write any tests for the application, I've skipped integration tests but I've also tried to avoid any code in the views whatsoever so that everything I call can be depended upon.
