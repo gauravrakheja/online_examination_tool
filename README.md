@@ -1,5 +1,5 @@
 - To get it up and running,
-  install ruby 2.5.0 and bundler 
+  install ruby 2.5.0 and bundler and run
 
 ```
 	bundle install && rake db:create && rake db:migrate
