@@ -8,15 +8,10 @@ class AttemptsController < ApplicationController
 
 	def create
 		@attempt = Attempt.create(user_id: attempt_params[:user_id], exam_id: attempt_params[:exam_id])
+		submit_answers
 		if @attempt.save
-			unsaved_answers = submit_answers
-			if unsaved_answers.empty?
-				flash[:notice] = "Thank you for attempting the Exam"
-				redirect_to exams_path
-			else
-				flash[:alert] = "Some of the answers could not be submitted"
-				redirect_back(fallback_location: exams_path)
-			end
+			flash[:notice] = "Thank you for attempting the Exam"
+			redirect_to exams_path
 		else
 			flash[:alert] = "OOPS, looks like something went wrong, please try again!"
 			render :new
@@ -44,19 +39,10 @@ class AttemptsController < ApplicationController
 	end
 
 	def submit_answers
-		unsaved_answers = []
 		@attempt.questions.each_with_index do |question, index|
 			question_params = params[:attempt][:questions_attributes][index.to_s]
-			if question_params[:answer][:text]
-				answer = question.answers.build(attempt: @attempt, text: question_params[:answer][:text])
-			else question_params[:answer][:submitted_option]
-				answer = question.answers.build(attempt: @attempt, submitted_option: question_params[:answer][:submitted_option])
-			end
-			unless answer.save
-				unsaved_answers << answer
-			end
+			question.answers.create(attempt: @attempt, text: question_params[:answer][:text], submitted_option: question_params[:answer][:submitted_option])
 		end
-		unsaved_answers
 	end
 
 	def attempt_params
