@@ -40,6 +40,7 @@
 	 		    	<%= form_for answer, remote: true do |f| %>
 	   		    	<small>*students don't see this</small>
 							<div class="form-group">
+                <%= f.label :marks %>
 								<%= f.text_field :marks, class: "form-control" %>
 							</div>
 							<div class="form-group">
