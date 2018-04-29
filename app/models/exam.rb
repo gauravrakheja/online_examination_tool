@@ -26,6 +26,10 @@ class Exam < ApplicationRecord
     def live
       where("start_date <= ? ", Date.today)
     end
+
+    def between(start_date, end_date)
+      where("start_date >= ? AND start_date <= ?", start_date, end_date)
+    end
     
     def upcoming
       where("start_date >= ? AND start_date <= ?",Date.today, Date.today + 7.days)
@@ -33,6 +37,12 @@ class Exam < ApplicationRecord
 
     def for_student(student)
       where(course: student.course, semester: student.semester)
+    end
+
+    def calender_json
+      all.map do |exam|
+        { title: exam.subject, start: exam.start_date.strftime("%Y-%m-%d"), course: exam.course, semester: exam.semester }
+      end.to_json
     end
   end
 

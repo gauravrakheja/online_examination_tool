@@ -34,15 +34,23 @@ class ExamsController < ApplicationController
 
 	def index
 		if can? :manage, Exam
-			exams = Exam.all
+			@all_exams = Exam.all
 		else
-			exams = Exam.live.for_student(current_user)
+			@all_exams = Exam.live.for_student(current_user)
 		end
-		@q = exams.ransack(params[:q])
+		@q = @all_exams.ransack(params[:q])
 		@exams = @q.result
+    respond_to do |format|
+      format.html
+      format.json { render json: json_exams }
+    end
 	end
 
 	private
+
+  def json_exams
+    @all_exams.between(params[:start].to_datetime, params[:end].to_datetime).calender_json
+  end
 
 	def not_students
 		authorize! :manage, Exam
