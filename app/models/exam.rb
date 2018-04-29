@@ -35,6 +35,14 @@ class Exam < ApplicationRecord
       where("start_date >= ? AND start_date <= ?",Date.today, Date.today + 7.days)
     end
 
+    def for_user(user)
+      if user.student?
+        for_student(user)
+      else
+        all
+      end
+    end
+
     def for_student(student)
       where(course: student.course, semester: student.semester)
     end

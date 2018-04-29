@@ -33,12 +33,12 @@ class ExamsController < ApplicationController
 	end
 
 	def index
-		if can? :manage, Exam
-			@all_exams = Exam.all
-		else
-			@all_exams = Exam.live.for_student(current_user)
-		end
-		@q = @all_exams.ransack(params[:q])
+    @all_exams = Exam.for_user(current_user)
+    if current_user.student?
+      @q = @all_exams.live.ransack(params[:q])
+    else
+      @q = @all_exams.ransack(params[:q])
+    end
 		@exams = @q.result
     respond_to do |format|
       format.html
