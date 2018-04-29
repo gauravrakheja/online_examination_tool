@@ -1,4 +1,4 @@
-$(document).on("ready", function() {
+$(document).on("turbolinks:load", function() {
     $('#calendar').fullCalendar({
         events: '/exams',
         theme: "bootstrap4",

@@ -132,6 +132,7 @@ GEM
     minitest (5.11.3)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
+    mousetrap-rails (1.4.6)
     multi_json (1.13.1)
     nio4r (2.2.0)
     nokogiri (1.8.2)
@@ -296,6 +297,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   momentjs-rails
+  mousetrap-rails
   pdfkit
   pry
   puma (~> 3.7)

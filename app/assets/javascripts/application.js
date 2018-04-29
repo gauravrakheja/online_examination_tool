@@ -16,6 +16,7 @@
 //= require moment
 //= require fullcalendar
 //= require Chart.bundle
+//= require mousetrap
 //= require chartkick
 //= require turbolinks
 //= require_tree .
