@@ -31,8 +31,6 @@ describe ExamsController, type: :controller do
 
     it 'should give all the exams' do
       get :index
-      expect(assigns(:upcoming_exams)).to include(exam1, exam2)
-      expect(assigns(:upcoming_exams)).to_not include exam
       expect(assigns(:exams)).to include(exam, exam1, exam2)
     end
   end
